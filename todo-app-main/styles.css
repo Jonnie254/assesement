@@ -1,0 +1,67 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  width: 100%;
+  height: 100vh;
+  background-color: hsl(235, 21%, 11%);
+}
+.banner-con {
+  width: 100%;
+  height: 60vh;
+}
+.banner {
+  width: 100%;
+  height: 100%;
+  background: url("/images/bg-desktop-dark.jpg");
+  background-size: cover;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.content {
+  width: 600px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40vh;
+}
+.content h1 {
+  letter-spacing: 3px;
+  color: #fff;
+}
+.todo {
+  width: 600px;
+  max-height: 498px;
+}
+form {
+  width: 100%;
+  height: 83px;
+}
+form input {
+  width: 100%;
+  padding: 15px 30px;
+  border-radius: 5px;
+  margin-top: 20px;
+  background: hsl(235, 24%, 19%);
+  font-size: 16px;
+  color: #fff;
+  letter-spacing: 1px;
+  outline: none;
+  border: none;
+}
+input::placeholder {
+  color: #fff;
+  letter-spacing: 2px;
+}
+.list {
+  width: 100%;
+  height: 330px;
+  margin-top: 2rem;
+}
