@@ -35,6 +35,7 @@ function createProject(event) {
     project_enddate !== ""
   ) {
     let newProject = {
+      id: Date.now(),
       name: project_name,
       description: project_description,
       manager: project_manager,
@@ -72,25 +73,35 @@ function displayProjects() {
   });
   projects.forEach((project, index) => {
     let projectRow = document.createElement("tr");
-    let projectData = document.createElement("td");
-    projectData.textContent = project.name;
-    projectRow.appendChild(projectData);
-    projectData = document.createElement("td");
-    projectData.textContent = project.description;
-    projectRow.appendChild(projectData);
-    projectData = document.createElement("td");
-    projectData.textContent = project.manager;
-    projectRow.appendChild(projectData);
-    projectData = document.createElement("td");
-    projectData.textContent = project.status;
-    projectRow.appendChild(projectData);
-    projectData = document.createElement("td");
-    projectData.textContent = project.startdate;
-    projectRow.appendChild(projectData);
-    projectData = document.createElement("td");
-    projectData.textContent = project.enddate;
-    projectRow.appendChild(projectData);
-    projectTable.appendChild(projectRow);
+
+    let idData = document.createElement("td");
+    idData.textContent = project.id;
+    projectRow.appendChild(idData);
+
+    let nameData = document.createElement("td");
+    nameData.textContent = project.name;
+    projectRow.appendChild(nameData);
+
+    let descriptionData = document.createElement("td");
+    descriptionData.textContent = project.description;
+    projectRow.appendChild(descriptionData);
+
+    let managerData = document.createElement("td");
+    managerData.textContent = project.manager;
+    projectRow.appendChild(managerData);
+
+    let statusData = document.createElement("td");
+    statusData.textContent = project.status;
+    projectRow.appendChild(statusData);
+
+    let startDateData = document.createElement("td");
+    startDateData.textContent = project.startdate;
+    projectRow.appendChild(startDateData);
+
+    let endDateData = document.createElement("td");
+    endDateData.textContent = project.enddate;
+    projectRow.appendChild(endDateData);
+
     let deleteUserbtn = document.createElement("button");
     deleteUserbtn.textContent = "Delete";
     deleteUserbtn.style.backgroundColor = "#f44336";
@@ -101,24 +112,23 @@ function displayProjects() {
     deleteUserbtn.style.borderRadius = "5px";
     deleteUserbtn.style.color = "white";
     deleteUserbtn.addEventListener("click", () => {
-      deleteUserbtn.addEventListener("click", () => {
-        let projectIndex = projects.findIndex(
-          (p) =>
-            p.name === project.name &&
-            p.description === project.description &&
-            p.manager === project.manager &&
-            p.status === project.status &&
-            p.startdate === project.startdate &&
-            p.enddate === project.enddate
-        );
-        if (projectIndex !== -1) {
-          projects.splice(projectIndex, 1);
-          localStorage.setItem("projects", JSON.stringify(projects));
-          displayProjects();
-        }
-      });
-
-      projectRow.appendChild(deleteUserbtn);
+      let projectIndex = projects.findIndex(
+        (p) =>
+          p.name === project.name &&
+          p.description === project.description &&
+          p.manager === project.manager &&
+          p.status === project.status &&
+          p.startdate === project.startdate &&
+          p.enddate === project.enddate
+      );
+      if (projectIndex !== -1) {
+        projects.splice(projectIndex, 1);
+        localStorage.setItem("projects", JSON.stringify(projects));
+        displayProjects();
+      }
     });
+
+    projectRow.appendChild(deleteUserbtn);
+    projectTable.appendChild(projectRow);
   });
 }
