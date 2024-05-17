@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.0.7/css/boxicons.min.css">
+    <link rel="stylesheet" href="project.css">
+    <title>Project Management</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="container2">
+            <div class="main-content">
+                <div class="container-header">
+                    <i class='bx bxs-folder-open'></i>
+                    <div class="people">
+                        <i class='bx bx-moon'></i>
+                        <i class='bx bx-user'></i>
+                    </div>
+                </div>
+                <div class="container-3">
+                    <div class="heading">
+                        <h1>Project Management System</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="form-table">
+                <div class="form">
+                    <form class="project-info">
+                        <input type="text" placeholder="Project Name" id="project-name">
+                        <br>
+                        <br>
+                        <input type="text" placeholder="Project Description" id="project-desc">
+                        <br>
+                        <br>
+                        <input type="text" placeholder="Project Manager" id="project-manager">
+                        <br>
+                        <br>
+                        <input type="text" placeholder="Status" id="project-status">
+                        <br>
+                        <br>
+                        <input type="date" placeholder="Start Date" id="project-start">
+                        <br>
+                        <br>
+                        <input type="date" placeholder="End Date" id="project-end">
+                        <br>
+                        <br>
+                        <input type="submit" placeholder="Create Project" class="btnsubmit">
+                    </form>
+                </div>
+                <div class="projecttable">
+                    <table id="displayUserstbl">
+                        <tr>
+                            <th>Unique Id</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Project Manager</th>
+                            <th>Status</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </table>
+                    <div class="buttons">
+                        <button class="createbutton">Create</button>
+                        <button class="viewall">View</button>
+                        <button class="viewone">ViewAll</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="project.js"></script>
+</body>
+
+</html>
