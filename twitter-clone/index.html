@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter clone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.0.7/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+    <div class="main-container">
+        <!--========== HEAD SECTION ==========-->
+        <div class="head-section">
+            <div class="top-bar">
+                <p>twitter clone</p>
+                <div class="search-box">
+                    <label for="Search">Search</label>
+                    <select id="users" onchange="fetchUserData()"></select>
+                </div>
+            </div>
+            <div class="bottom-bar">
+                <!-- Background image area -->
+            </div>
+        </div>
+
+        <!--========== BODY SECTION ==========-->
+        <div class="body-section">
+            <div class="profile-area" id="profile-area">
+                <!-- Profile data will be displayed here -->
+            </div>
+            <main class="container">
+                <section id="posts-container" class="posts-section">
+                    <!-- Posts will be displayed here -->
+                </section>
+                <aside id="comments-container" class="comments-section">
+                    <!-- Comments will be displayed here -->
+                </aside>
+            </main>
+        </div>
+    </div>
+
+    <script src="./main.js"></script>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

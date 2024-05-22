@@ -1,0 +1,251 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+body {
+  overflow-x: hidden;
+}
+.main-container {
+  width: 100%;
+}
+/*========== HEAD SECTION ==========*/
+.head-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 100px;
+}
+.head-section > .top-bar {
+  background-color: #1da1f2;
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.top-bar > p {
+  margin-left: 15vw;
+  color: #fff;
+  font-family: "Times New Roman", Times, serif;
+  font-size: large;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+}
+.top-bar > .search-box {
+  margin-right: 20vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.search-box > label {
+  color: #fff;
+  font-family: "Times New Roman", Times, serif;
+  font-size: large;
+  text-transform: capitalize;
+}
+.search-box > select {
+  width: 18vw;
+  height: 7vh;
+  border: none;
+  border-radius: 0.3rem;
+  padding: 1rem;
+}
+.search-box > select:focus {
+  outline: none;
+}
+
+.head-section > .bottom-bar {
+  width: 100%;
+  height: 25vh;
+  background-image: url("./images/twitter-clone-bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-size: 100% 200px;
+}
+
+/*========== BODY SECTION ==========*/
+.body-section {
+  margin-top: 1rem;
+}
+.profile-area {
+  padding-left: 2rem;
+  background-color: #f0f0f0;
+  width: 100%;
+  margin-top: -6rem;
+}
+.profile-pic {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  margin-top: -5rem;
+}
+
+.container {
+  width: 98%;
+  margin: 20px auto;
+  background-color: #fff;
+  padding-top: 2rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  border-left: 1px solid #f0f0f0;
+}
+
+main {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  width: 99%;
+}
+
+.posts-section {
+  flex: 2;
+}
+
+.comments-section {
+  flex: 2;
+  background: #fff;
+  border-radius: 10px;
+}
+
+.post,
+.comment {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  gap: 15px;
+}
+
+.post-title {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.comment-body {
+  font-size: 16px;
+}
+
+button {
+  background-color: #1da1f2;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0d8bda;
+}
+
+.profile-image {
+  width: 5.5rem;
+  height: 7.5rem;
+  border-radius: 5px;
+}
+.post-user,
+.comment-name {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.location-container {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.location-icon {
+  display: flex;
+  gap: 5px;
+}
+.post-icons {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+.icon {
+  display: flex;
+  gap: 5px;
+}
+.comment-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+hr {
+  width: 90%;
+}
+.person-details p {
+  margin: 10px 0;
+}
+.post-user {
+  margin-bottom: 10px;
+}
+
+/* For screens smaller than 768px (e.g., tablets and mobile phones) */
+@media (max-width: 768px) {
+  .main-container {
+    padding: 0;
+  }
+  .head-section {
+    width: 100%;
+  }
+  .head-section > .top-bar {
+    flex-direction: column;
+    height: auto;
+    align-items: center;
+  }
+  .top-bar > p {
+    margin: 1rem 0;
+  }
+  .top-bar > .search-box {
+    margin: 1rem 0;
+  }
+  .search-box > select {
+    width: 100%;
+  }
+  .bottom-bar {
+    height: 25vh;
+  }
+  .profile-area {
+    padding: 1rem;
+  }
+  .profile-pic {
+    margin-top: 0;
+  }
+  main {
+    flex-direction: column;
+  }
+  .posts-section,
+  .comments-section {
+    flex: 1;
+    width: 100%;
+  }
+}
+
+/* For screens smaller than 480px (e.g., small mobile phones) */
+@media (max-width: 480px) {
+  .profile-pic {
+    width: 7rem;
+    height: 7rem;
+  }
+  .profile-area {
+    padding: 0.5rem;
+  }
+  .post,
+  .comment {
+    padding: 10px;
+  }
+  .post-title {
+    font-size: 16px;
+  }
+  .comment-body {
+    font-size: 14px;
+  }
+  .profile-image {
+    width: 4rem;
+    height: 5rem;
+  }
+}
