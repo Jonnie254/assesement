@@ -10,7 +10,9 @@ body {
 }
 .banner-con {
   width: 100%;
-  height: 60vh;
+}
+.moon {
+  display: none;
 }
 .banner {
   width: 100%;
@@ -149,4 +151,8 @@ input::placeholder {
 }
 .active-check img {
   transform: scale(1) !important;
+}
+.complete {
+  text-decoration: line-through;
+  opacity: 0.5;
 }
