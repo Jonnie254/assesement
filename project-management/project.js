@@ -127,8 +127,42 @@ function displayProjects() {
         displayProjects();
       }
     });
-
     projectRow.appendChild(deleteUserbtn);
     projectTable.appendChild(projectRow);
   });
+  let updateUserbtn = document.createElement("button");
+  updateUserbtn.textContent = "Update";
+  updateUserbtn.style.marginLeft = "10px";
+  // For the update button
+  updateUserbtn.style.backgroundColor = "#4CAF50";
+  updateUserbtn.style.color = "white";
+  updateUserbtn.style.border = "none";
+  updateUserbtn.style.cursor = "pointer";
+  updateUserbtn.style.padding = "5px 10px";
+  updateUserbtn.style.marginRight = "10px";
+  updateUserbtn.style.marginTop = "5px";
+  updateUserbtn.style.textAlign = "center";
+  updateUserbtn.style.fontColor = "white";
+  updateUserbtn.style.textDecoration = "none";
+  updateUserbtn.style.borderRadius = "5px";
+  updateUserbtn.style.marginRight = "10px";
+  updateUserbtn.style.color = "white";
+  updateUserbtn.addEventListener("click", () => {
+    let projectIndex = projects.findIndex(
+      (p) =>
+        p.name === project.name &&
+        p.description === project.description &&
+        p.manager === project.manager &&
+        p.status === project.status &&
+        p.startdate === project.startdate &&
+        p.enddate === project.enddate
+    );
+    if (projectIndex !== -1) {
+      projects.splice(projectIndex, 1);
+      localStorage.setItem("projects", JSON.stringify(projects));
+      displayProjects();
+    }
+  });
+  projectRows.appendChild(updateUserbtn);
+  projectTable.appendChild(projectRows);
 }
