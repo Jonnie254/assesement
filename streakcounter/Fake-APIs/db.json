@@ -8,17 +8,25 @@
   ],
   "habits": [
     {
-      "id": "1",
-      "name": "Exercise",
-      "start_date": "2021-01-01",
+      "id": "f1c0",
+      "name": "smoking",
+      "start_date": "2024-05-09",
       "user_id": "1",
-      "icon": "https://www.flaticon.com/svg/static/icons/svg/3523/3523063.svg"
+      "icon": "airplane-outline"
     },
     {
-      "id": "1e81",
-      "name": "smoking",
+      "id": "194d",
+      "name": "eating",
+      "start_date": "2024-05-24",
       "user_id": "1",
-      "icon": "blob:http://127.0.0.1:5500/5193013c-3db7-4da7-9309-441537367ece"
+      "icon": "fast-food-outline"
+    },
+    {
+      "id": "2332",
+      "name": "eating",
+      "start_date": "2024-05-24",
+      "user_id": "1",
+      "icon": "fast-food-outline"
     }
   ]
 }

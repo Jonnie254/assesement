@@ -4,117 +4,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assests/index.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css">
+    <link rel="stylesheet" href="index.css">
     <title>Streak Counter App</title>
 </head>
 
 <body>
     <div class="container">
         <div class="header-con">
-            <img src="./assests/streak.png" alt="logo" class="logo">
+            <img src="./assests/phone.png" alt="phone" class="phone" width="150px" heigth="150px">
         </div>
         <button id="myBtn" class="mybtn">Add Habits</button>
         <div id="myModal" class="modal">
             <!-- Modal content -->
             <div class="modal-content">
                 <span class="close" id="mySpan">&times;</span>
+                <br>
+                <br>
+                <h2>Add Habits</h2>
                 <form class="habit-form" id="habit-Form">
                     <input type="text" id="habit" name="habit" placeholder="Enter habit">
                     <input type="date" id="date" name="date">
-                    <input type="file" id="file" name="file">
+                    <input type="text" id="icon-code" placeholder="Enter Ionicon code" required>
+                    <p id="error-message" class="error-message"></p>
+                    <br>
                     <button type="submit" class="submit">Submit</button>
                 </form>
             </div>
         </div>
         <div class="streak">
-            <div class="flip-card">
+            <div class="flip-card" id="flipcard">
                 <div class="flip-card-inner">
                     <div class="flip-card-front">
-                        <img src="./assests/cycling.png" alt="plus" class="plus" height="50px" width="50px">
-                        <p class="date">22-07-06</p>
-                        <p class="streak-text">Cycling</p>
                     </div>
                     <div class="flip-card-back">
-                        <img src="./assests/cycling.png" alt="plus" class="plus" height="50px" width="50px">
-                    </div>
-                </div>
-            </div>
-
-            <div class="flip-card">
-                <div class="flip-card-inner">
-                    <div class="flip-card-front">
-                        <img src="./assests/cycling.png" alt="plus" class="plus" height="50px" width="50px">
-                        <p class="date">22-07-06</p>
-                        <p class="streak-text">Cycling</p>
-                    </div>
-                    <div class="flip-card-back">
-                        <img src="./assests/cycling.png" alt="plus" class="plus" height="50px" width="50px">
-                    </div>
-                </div>
-            </div>
-            <div class="flip-card">
-                <div class="flip-card-inner">
-                    <div class="flip-card-front">
-                        <img src="./assests/cycling.png" alt="plus" class="plus" height="50px" width="50px">
-                        <p class="date">22-07-06</p>
-                        <p class="streak-text">Cycling</p>
-                    </div>
-                    <div class="flip-card-back">
-                        <img src="./assests/cycling.png" alt="plus" class="plus" height="50px" width="50px">
-                    </div>
-                </div>
-            </div>
-            <div class="flip-card">
-                <div class="flip-card-inner">
-                    <div class="flip-card-front">
-                        <img src="./assests/cycling.png" alt="plus" class="plus" height="50px" width="50px">
-                        <p class="date">22-07-06</p>
-                        <p class="streak-text">Cycling</p>
-                    </div>
-                    <div class="flip-card-back">
-                        <img src="./assests/cycling.png" alt="plus" class="plus" height="50px" width="50px">
-                    </div>
-                </div>
-            </div>
-            <div class="flip-card">
-                <div class="flip-card-inner">
-                    <div class="flip-card-front">
-                        <img src="./assests/cycling.png" alt="plus" class="plus" height="50px" width="50px">
-                        <p class="date">22-07-06</p>
-                        <p class="streak-text">Cycling</p>
-                    </div>
-                    <div class="flip-card-back">
-                        <img src="./assests/cycling.png" alt="plus" class="plus" height="50px" width="50px">
-                    </div>
-                </div>
-            </div>
-            <div class="flip-card">
-                <div class="flip-card-inner">
-                    <div class="flip-card-front">
-                        <img src="./assests/cycling.png" alt="plus" class="plus" height="50px" width="50px">
-                        <p class="date">22-07-06</p>
-                        <p class="streak-text">Cycling</p>
-                    </div>
-                    <div class="flip-card-back">
-                        <img src="./assests/cycling.png" alt="plus" class="plus" height="50px" width="50px">
-                    </div>
-                </div>
-            </div>
-            <div class="flip-card">
-                <div class="flip-card-inner">
-                    <div class="flip-card-front">
-                        <img src="./assests/cycling.png" alt="plus" class="plus" height="50px" width="50px">
-                        <p class="date">22-07-06</p>
-                        <p class="streak-text">Cycling</p>
-                    </div>
-                    <div class="flip-card-back">
-                        <img src="./assests/cycling.png" alt="plus" class="plus" height="50px" width="50px">
+                        <div class="streak-container">
+                            <div class="streak-circle"></div>
+                            <div class="streak-label"></div>
+                            <div class="streak-date" id="streak-date"></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <script src="./dist/index.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>
