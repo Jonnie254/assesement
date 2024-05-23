@@ -1,0 +1,24 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "John Doe",
+      "email": "john@gmail.com"
+    }
+  ],
+  "habits": [
+    {
+      "id": "1",
+      "name": "Exercise",
+      "start_date": "2021-01-01",
+      "user_id": "1",
+      "icon": "https://www.flaticon.com/svg/static/icons/svg/3523/3523063.svg"
+    },
+    {
+      "id": "1e81",
+      "name": "smoking",
+      "user_id": "1",
+      "icon": "blob:http://127.0.0.1:5500/5193013c-3db7-4da7-9309-441537367ece"
+    }
+  ]
+}
