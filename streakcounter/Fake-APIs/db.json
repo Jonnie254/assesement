@@ -8,23 +8,9 @@
   ],
   "habits": [
     {
-      "id": "2332",
-      "name": "eating",
-      "start_date": "2024-05-24",
-      "user_id": "1",
-      "icon": "fast-food-outline"
-    },
-    {
       "id": "6a9b",
       "name": "smoking",
       "start_date": "2024-05-21",
-      "user_id": "1",
-      "icon": "logo-no-smoking"
-    },
-    {
-      "id": "eb54",
-      "name": "smoking",
-      "start_date": "2024-05-15",
       "user_id": "1",
       "icon": "logo-no-smoking"
     },
@@ -41,6 +27,13 @@
       "start_date": "2024-05-22",
       "user_id": "1",
       "icon": "barbell-outline"
+    },
+    {
+      "id": "e5fb",
+      "name": "exercise",
+      "start_date": "2024-05-25",
+      "user_id": "1",
+      "icon": "logo-no-smoking"
     }
   ]
 }

@@ -64,10 +64,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const habit = habitInput === null || habitInput === void 0 ? void 0 : habitInput.value.trim();
         const date = dateInput === null || dateInput === void 0 ? void 0 : dateInput.value;
         const text = fileInput === null || fileInput === void 0 ? void 0 : fileInput.value.trim();
-        // Clear any previous error messages
         errorMessage.style.display = "none";
         errorMessage.textContent = "";
-        // Validate inputs
         if (!habit) {
             errorMessage.textContent = "Please enter a habit.";
             errorMessage.style.display = "block";
@@ -131,7 +129,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const habit = habitInput.value.trim();
         const date = dateInput.value;
         const iconCode = iconCodeInput.value.trim();
-        // Clear any previous error messages
         errorMessage.style.display = "none";
         errorMessage.textContent = "";
         // Validate inputs
@@ -186,7 +183,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
-// Function to calculate streak count based on start date
 function calculateStreakCount(startDate) {
     const currentDate = new Date();
     currentDate.setHours(0, 0, 0, 0);
@@ -207,37 +203,33 @@ document.addEventListener("DOMContentLoaded", () => {
         fetch("http://localhost:3001/habits")
             .then((response) => response.json())
             .then((data) => {
-            // Remove existing cards before appending new ones
             streakContainer.innerHTML = "";
-            // Sort habits by start date (ascending order)
             data.sort((a, b) => new Date(a.start_date).getTime() - new Date(b.start_date).getTime());
             // Iterate through each habit to calculate streak count and create card
             data.forEach((habit) => {
                 const streakCount = calculateStreakCount(habit.start_date);
-                // Create HTML elements for the habit card
                 const card = document.createElement("div");
                 card.className = "flip-card";
                 card.innerHTML = `
-            <div class="flip-card-inner">
-              <div class="flip-card-front">
-                <ion-icon name="${habit.icon}" class="icon" size="large" style="color: #bb6c12"
-                ></ion-icon>
-                <p class="date">${habit.start_date}</p>
-                <p class="streak-text">${habit.name}</p>
-              </div>
-              <div class="flip-card-back">
-                <div class="streak-container">
-                  <div class="streak-circle">
-                    <i class='bx bxs-hot' id="streak-icon" style='color:#bb6c12'></i>
-                    <span id="streak-count">${streakCount}</span>
-                  </div>
-                  <div class="streak-label">Current Streak</div>
-                  <div class="streak-date">${new Date().toDateString()}</div>
-                </div>
-              </div>
-            </div>
-          `;
-                // Append the card to the streak container
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+        <ion-icon name="${habit.icon}" class="icon" size="large" style="color: blue;"></ion-icon>
+        <p class="date">${habit.start_date}</p>
+        <p class="streak-text">${habit.name}</p>
+      </div>
+      <div class="flip-card-back">
+        <div class="streak-container">
+          <div class="streak-circle">
+            <i class='bx bxs-hot' id="streak-icon" style='color:#bb6c12'></i>
+            <span id="streak-count">${streakCount}</span>
+          </div>
+          <div class="streak-label">Current Streak</div>
+          <div class="streak-date">${new Date().toDateString()}</div>
+          <div class="streak-button-container">
+           <button class="streak-button" onclick="deleteHabit('${habit.id}')">Delete</button>
+           <button class="streak-button" onclick="editHabit('${habit.id}')">Edit</button>
+    </div>
+  `;
                 streakContainer.appendChild(card);
             });
         })
@@ -247,3 +239,29 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("Streak container not found.");
     }
 });
+function deleteHabit(habitId) {
+    if (confirm("Are you sure you want to delete this habit?")) {
+        // Perform deletion logic
+        fetch(`http://localhost:3001/habits/${habitId}`, {
+            method: "DELETE",
+        })
+            .then((response) => {
+            if (response.ok) {
+                // If deletion is successful, remove the flip card from the UI
+                const flipCard = document.getElementById(`habit-${habitId}`);
+                if (flipCard) {
+                    flipCard.remove();
+                }
+                else {
+                    console.error("Flip card not found.");
+                }
+            }
+            else {
+                console.error("Failed to delete habit.");
+            }
+        })
+            .catch((error) => {
+            console.error("Error deleting habit:", error);
+        });
+    }
+}

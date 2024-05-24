@@ -190,7 +190,7 @@ document
       });
 
       if (response.ok) {
-        alert("Habit saved successfully!, maintain the ");
+        alert("Habit saved successfully!");
         habitInput.value = "";
         dateInput.value = "";
         iconCodeInput.value = "";
@@ -249,7 +249,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="flip-card-front">
         <ion-icon name="${
           habit.icon
-        }" class="icon" size="large" style="color:;"></ion-icon>
+        }" class="icon" size="large" style="color: blue;"></ion-icon>
         <p class="date">${habit.start_date}</p>
         <p class="streak-text">${habit.name}</p>
       </div>
@@ -261,6 +261,13 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
           <div class="streak-label">Current Streak</div>
           <div class="streak-date">${new Date().toDateString()}</div>
+          <div class="streak-button-container">
+           <button class="streak-button" onclick="deleteHabit('${
+             habit.id
+           }')">Delete</button>
+           <button class="streak-button" onclick="editHabit('${
+             habit.id
+           }')">Edit</button>
     </div>
   `;
             streakContainer.appendChild(card);
@@ -272,3 +279,27 @@ document.addEventListener("DOMContentLoaded", () => {
     console.error("Streak container not found.");
   }
 });
+function deleteHabit(habitId: any) {
+  if (confirm("Are you sure you want to delete this habit?")) {
+    // Perform deletion logic
+    fetch(`http://localhost:3001/habits/${habitId}`, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        if (response.ok) {
+          // If deletion is successful, remove the flip card from the UI
+          const flipCard = document.getElementById(`habit-${habitId}`);
+          if (flipCard) {
+            flipCard.remove();
+          } else {
+            console.error("Flip card not found.");
+          }
+        } else {
+          console.error("Failed to delete habit.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error deleting habit:", error);
+      });
+  }
+}
