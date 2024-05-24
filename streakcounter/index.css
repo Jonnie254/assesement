@@ -18,15 +18,22 @@ body {
 }
 .header-con {
   background-color: #ff7f50;
-  height: 30vh;
-  width: 80%;
+  height: 40vh;
+  width: 90%;
   margin-bottom: 10px;
-  margin: 0 auto;
   margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
 }
 .header-con img {
-  margin-left: 50%;
-  margin-top: 10px;
+  margin-left: 10%;
+  margin-top: 5px;
+}
+.header-con h1 {
+  font-size: 1.5rem;
+  color: white;
 }
 .streak {
   display: flex;
@@ -35,7 +42,19 @@ body {
   justify-content: flex-start; /* Align items to the start of the flex container */
   margin-top: 40px;
 }
-
+ion-icon {
+  font-size: 64px;
+  color: white;
+  transition: 1s ease-in-out;
+}
+ion-icon:hover {
+  cursor: pointer;
+  color: rgb(99, 99, 110);
+}
+.welcome {
+  display: flex;
+  align-items: center;
+}
 .flip-card {
   background-color: #ffff;
   border: 1px solid #ff7f50;
@@ -158,14 +177,13 @@ body {
   margin-bottom: 10px;
   text-align: center;
 }
-.mybtn {
-  background-color: #ff7f50;
-  color: white;
+.mybtn1 {
+  color: #cc5200;
   padding: 10px 20px;
   border-radius: 5px;
   border: none;
-  cursor: pointer;
   margin-top: 20px;
+  font-size: 24px;
 }
 .habit-form {
   display: flex;
@@ -260,4 +278,11 @@ body {
   margin-top: 5px;
   font-size: 0.9em;
   color: gray;
+}
+@media screen and (max-width: 471px) {
+  /* CSS rules for screens with a maximum width of 471px */
+  .header-con {
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
 }

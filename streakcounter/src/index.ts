@@ -251,7 +251,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <div class="flip-card-front">
                 <ion-icon name="${
                   habit.icon
-                }" class="icon" size="large" style="color: #bb6c12"
+                }" class="icon" size="large" style="color: blue;"
                 ></ion-icon>
                 <p class="date">${habit.start_date}</p>
                 <p class="streak-text">${habit.name}</p>

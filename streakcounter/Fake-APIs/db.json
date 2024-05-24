@@ -27,6 +27,34 @@
       "start_date": "2024-05-24",
       "user_id": "1",
       "icon": "fast-food-outline"
+    },
+    {
+      "id": "6a9b",
+      "name": "smoking",
+      "start_date": "2024-05-21",
+      "user_id": "1",
+      "icon": "logo-no-smoking"
+    },
+    {
+      "id": "3c97",
+      "name": "smoking",
+      "start_date": "2024-05-21",
+      "user_id": "1",
+      "icon": "logo-no-smoking"
+    },
+    {
+      "id": "eb54",
+      "name": "smoking",
+      "start_date": "2024-05-15",
+      "user_id": "1",
+      "icon": "fast-food-outline"
+    },
+    {
+      "id": "ff54",
+      "name": "alcohol",
+      "start_date": "2024-05-15",
+      "user_id": "1",
+      "icon": "fast-food-outline"
     }
   ]
 }

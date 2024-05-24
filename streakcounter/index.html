@@ -7,14 +7,19 @@
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css">
     <link rel="stylesheet" href="index.css">
     <title>Streak Counter App</title>
+
 </head>
 
 <body>
     <div class="container">
         <div class="header-con">
-            <img src="./assests/phone.png" alt="phone" class="phone" width="150px" heigth="150px">
+            <div class="welcome">
+                <ion-icon name="add-circle-outline" id="myBtn" class="out" width="100px" height="100px"></ion-icon>
+                <img src="./assests/phone.png" alt="phone" class="phone" width="150px" heigth="150px">
+            </div>
+            <h1>Welcome to my streak app</h1>
         </div>
-        <button id="myBtn" class="mybtn">Add Habits</button>
+        <button id="myBtn" class="mybtn1">ADD HABITS</button>
         <div id="myModal" class="modal">
             <!-- Modal content -->
             <div class="modal-content">
@@ -25,7 +30,7 @@
                 <form class="habit-form" id="habit-Form">
                     <input type="text" id="habit" name="habit" placeholder="Enter habit">
                     <input type="date" id="date" name="date">
-                    <input type="text" id="icon-code" placeholder="Enter Ionicon code" required>
+                    <input type="text" id="icon-code" placeholder="Enter Ionicon code">
                     <p id="error-message" class="error-message"></p>
                     <br>
                     <button type="submit" class="submit">Submit</button>
