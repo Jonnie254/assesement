@@ -16,28 +16,12 @@
       "id": "fqgtqn41g"
     },
     {
-      "name": "HeadPhones",
-      "description": "Quality headphones",
-      "price": 10000,
-      "category": "Electronics",
-      "imageURL": "https://m.media-amazon.com/images/I/71MGiPTwXAL._AC_UY218_.jpg",
-      "id": "4"
-    },
-    {
       "id": "5",
       "name": "HeadPhones",
       "description": "Quality headphones",
       "price": 10000,
       "category": "Electronics",
       "imageURL": "https://images.unsplash.com/photo-1504274066651-8d31a536b11a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHdoaXRlJTIwd2F0Y2h8ZW58MHx8MHx8fDA%3D"
-    },
-    {
-      "name": "HeadPhones",
-      "description": "Quality headphones",
-      "price": "10",
-      "category": "Electronics",
-      "imageURL": "https://m.media-amazon.com/images/I/31zzeFafJJL._AC_SR400,600_.jpg",
-      "id": "6"
     },
     {
       "id": "7",

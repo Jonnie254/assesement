@@ -36,6 +36,8 @@ body {
   margin-top: 20px;
   padding: 10px 20px;
   height: 100%;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 .category li,
 .filter li {
@@ -47,6 +49,10 @@ body {
 .category li:hover,
 .filter li:hover {
   background-color: #ccc;
+  border-radius: 10px;
+}
+li.active {
+  background-color: #deeaec;
   border-radius: 10px;
 }
 .container-main {
@@ -74,6 +80,8 @@ body {
   padding: 10px;
   gap: 10px;
   background-color: #ffffff;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
 }
 .item h3,
 p {
@@ -93,6 +101,9 @@ p {
 }
 .item button:hover {
   background-color: #ff4500;
+}
+.item:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 .modal {
   width: 300px;
@@ -159,4 +170,65 @@ form .btn,
 .btn:hover,
 form .btn:hover {
   background-color: #ff4500;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1200px) {
+  .container {
+    width: 90%;
+  }
+}
+
+@media (max-width: 992px) {
+  .container-main {
+    flex-direction: column;
+  }
+  .aside {
+    width: 100%;
+    margin-top: 0;
+  }
+  .items {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .head-con {
+    flex-direction: column;
+  }
+  .items {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .head-con {
+    align-items: flex-start;
+  }
+  .user-icon {
+    gap: 5px;
+  }
+  .user-icon img {
+    width: 30px;
+    height: 30px;
+  }
+  .items {
+    grid-template-columns: 1fr;
+  }
+  .item {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+  .item button {
+    margin-left: 0;
+    padding: 5px 10px;
+  }
+  .item h3,
+  p {
+    font-size: 16px;
+  }
+  .modal {
+    width: 90%;
+  }
 }
