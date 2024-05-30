@@ -3,10 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let productId: string | null = urlParams.get("id");
 
   if (productId) {
-    // Convert productId to a string if it's a number
-    if (typeof productId === "number" || typeof productId === "string") {
-      productId = productId.toString();
-    }
+    productId = productId.toString();
 
     fetch(`http://localhost:3001/Products/${productId}`)
       .then((response) => {
@@ -46,12 +43,39 @@ document.addEventListener("DOMContentLoaded", () => {
           productPrice.textContent = `Price: $${product.price}`;
         }
 
-        // Handling delete button
         const deleteButton = document.getElementById(
           "delete-button"
         ) as HTMLButtonElement | null;
+        const popup = document.getElementById(
+          "pop-up"
+        ) as HTMLDivElement | null;
+        const deletePopupButton = document.getElementById(
+          "delete-popup"
+        ) as HTMLButtonElement | null;
+        const cancelPopupButton = document.getElementById(
+          "cancel-popup"
+        ) as HTMLButtonElement | null;
+
+        function showPopup(): void {
+          if (popup) {
+            popup.classList.add("open");
+          }
+        }
+
+        function hidePopup(): void {
+          if (popup) {
+            popup.classList.remove("open");
+          }
+        }
+
         if (deleteButton) {
           deleteButton.addEventListener("click", () => {
+            showPopup();
+          });
+        }
+
+        if (deletePopupButton) {
+          deletePopupButton.addEventListener("click", () => {
             fetch(`http://localhost:3001/Products/${productId}`, {
               method: "DELETE",
             })
@@ -64,10 +88,14 @@ document.addEventListener("DOMContentLoaded", () => {
               .catch((error) => {
                 console.error("Error deleting product:", error);
               });
+            hidePopup();
           });
         }
 
-        // Handling edit button and modal
+        if (cancelPopupButton) {
+          cancelPopupButton.addEventListener("click", hidePopup);
+        }
+
         const editButton = document.getElementById(
           "edit-button"
         ) as HTMLButtonElement | null;
@@ -77,6 +105,21 @@ document.addEventListener("DOMContentLoaded", () => {
         const cancelButton = document.getElementById(
           "cancel-btn"
         ) as HTMLButtonElement | null;
+        const addProductButton = document.getElementById(
+          "add-product"
+        ) as HTMLButtonElement | null;
+
+        function showEditModal(): void {
+          if (modal) {
+            modal.classList.add("modal-open");
+          }
+        }
+
+        function hideEditModal(): void {
+          if (modal) {
+            modal.classList.remove("modal-open");
+          }
+        }
 
         if (editButton && modal) {
           editButton.addEventListener("click", () => {
@@ -92,20 +135,14 @@ document.addEventListener("DOMContentLoaded", () => {
             (document.getElementById("image-url") as HTMLInputElement).value =
               product.imageURL;
 
-            modal.classList.add("modal-open");
+            showEditModal();
           });
         }
 
         if (cancelButton && modal) {
-          cancelButton.addEventListener("click", () => {
-            modal.classList.remove("modal-open");
-          });
+          cancelButton.addEventListener("click", hideEditModal);
         }
 
-        // Handling add product button
-        const addProductButton = document.getElementById(
-          "add-product"
-        ) as HTMLButtonElement | null;
         if (addProductButton && modal) {
           addProductButton.addEventListener("click", (event) => {
             event.preventDefault();
@@ -120,7 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 (document.getElementById("price-tag") as HTMLInputElement).value
               ),
               category: (
-                document.getElementById("category") as HTMLSelectElement
+                document.getElementById("category") as HTMLInputElement
               ).value,
               imageURL: (
                 document.getElementById("image-url") as HTMLInputElement
@@ -150,7 +187,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   productImage.src = updatedProduct.imageURL;
                   productImage.alt = updatedProduct.name;
                 }
-                modal.classList.remove("modal-open");
+                hideEditModal();
               })
               .catch((error) => {
                 console.error("Error updating product:", error);

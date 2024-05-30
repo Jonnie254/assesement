@@ -3,10 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const urlParams = new URLSearchParams(window.location.search);
     let productId = urlParams.get("id");
     if (productId) {
-        // Convert productId to a string if it's a number
-        if (typeof productId === "number" || typeof productId === "string") {
-            productId = productId.toString();
-        }
+        productId = productId.toString();
         fetch(`http://localhost:3001/Products/${productId}`)
             .then((response) => {
             if (!response.ok) {
@@ -32,10 +29,27 @@ document.addEventListener("DOMContentLoaded", () => {
             if (productPrice) {
                 productPrice.textContent = `Price: $${product.price}`;
             }
-            // Handling delete button
             const deleteButton = document.getElementById("delete-button");
+            const popup = document.getElementById("pop-up");
+            const deletePopupButton = document.getElementById("delete-popup");
+            const cancelPopupButton = document.getElementById("cancel-popup");
+            function showPopup() {
+                if (popup) {
+                    popup.classList.add("open");
+                }
+            }
+            function hidePopup() {
+                if (popup) {
+                    popup.classList.remove("open");
+                }
+            }
             if (deleteButton) {
                 deleteButton.addEventListener("click", () => {
+                    showPopup();
+                });
+            }
+            if (deletePopupButton) {
+                deletePopupButton.addEventListener("click", () => {
                     fetch(`http://localhost:3001/Products/${productId}`, {
                         method: "DELETE",
                     })
@@ -48,12 +62,26 @@ document.addEventListener("DOMContentLoaded", () => {
                         .catch((error) => {
                         console.error("Error deleting product:", error);
                     });
+                    hidePopup();
                 });
             }
-            // Handling edit button and modal
+            if (cancelPopupButton) {
+                cancelPopupButton.addEventListener("click", hidePopup);
+            }
             const editButton = document.getElementById("edit-button");
             const modal = document.getElementById("mymodal");
             const cancelButton = document.getElementById("cancel-btn");
+            const addProductButton = document.getElementById("add-product");
+            function showEditModal() {
+                if (modal) {
+                    modal.classList.add("modal-open");
+                }
+            }
+            function hideEditModal() {
+                if (modal) {
+                    modal.classList.remove("modal-open");
+                }
+            }
             if (editButton && modal) {
                 editButton.addEventListener("click", () => {
                     document.getElementById("item-name").value =
@@ -65,16 +93,12 @@ document.addEventListener("DOMContentLoaded", () => {
                         product.category;
                     document.getElementById("image-url").value =
                         product.imageURL;
-                    modal.classList.add("modal-open");
+                    showEditModal();
                 });
             }
             if (cancelButton && modal) {
-                cancelButton.addEventListener("click", () => {
-                    modal.classList.remove("modal-open");
-                });
+                cancelButton.addEventListener("click", hideEditModal);
             }
-            // Handling add product button
-            const addProductButton = document.getElementById("add-product");
             if (addProductButton && modal) {
                 addProductButton.addEventListener("click", (event) => {
                     event.preventDefault();
@@ -110,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             productImage.src = updatedProduct.imageURL;
                             productImage.alt = updatedProduct.name;
                         }
-                        modal.classList.remove("modal-open");
+                        hideEditModal();
                     })
                         .catch((error) => {
                         console.error("Error updating product:", error);

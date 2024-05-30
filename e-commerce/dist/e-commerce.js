@@ -1,17 +1,25 @@
 "use strict";
-// Ensure the DOM is fully loaded before running the script
 document.addEventListener("DOMContentLoaded", function () {
-    // Select the elements
     const addBtn = document.getElementById("add-new-product");
     const addForm = document.getElementById("add-form");
     const modal = document.getElementById("mymodal");
     const cancelBtn = document.getElementById("cancel-btn");
+    const popUp = document.getElementById("pop-up");
     const addProductBtn = document.getElementById("add-product");
-    // Check if the elements exist and add event listeners
+    const categoryHeader = document.querySelector(".items-two h2");
+    const itemNameInput = document.getElementById("item-name");
+    const descriptionInput = document.getElementById("description-name");
+    const priceInput = document.getElementById("price-tag");
+    const categorySelect = document.getElementById("category");
+    const imageUrlInput = document.getElementById("image-url");
+    const itemNameError = document.querySelector("p.error-message:nth-of-type(1)");
+    const descriptionError = document.querySelector("p.error-message:nth-of-type(2)");
+    const priceError = document.querySelector("p.error-message:nth-of-type(3)");
+    const imageUrlError = document.querySelector("p.error-message:nth-of-type(4)");
     if (addBtn) {
         addBtn.addEventListener("click", () => {
             modal.classList.add("modal-open");
-            console.log("clicked");
+            console.log("Add button clicked");
         });
     }
     else {
@@ -29,22 +37,42 @@ document.addEventListener("DOMContentLoaded", function () {
     if (addProductBtn) {
         addProductBtn.addEventListener("click", (e) => {
             e.preventDefault();
-            // Fetch the existing products to determine the new ID
+            itemNameError.classList.remove("open");
+            descriptionError.classList.remove("open");
+            priceError.classList.remove("open");
+            imageUrlError.classList.remove("open");
+            let isValid = true;
+            if (itemNameInput.value.trim() === "") {
+                itemNameError.classList.add("open");
+                isValid = false;
+            }
+            if (descriptionInput.value.trim() === "") {
+                descriptionError.classList.add("open");
+                isValid = false;
+            }
+            if (priceInput.value.trim() === "" ||
+                isNaN(parseFloat(priceInput.value))) {
+                priceError.classList.add("open");
+                isValid = false;
+            }
+            if (imageUrlInput.value.trim() === "") {
+                imageUrlError.classList.add("open");
+                isValid = false;
+            }
+            if (!isValid) {
+                return;
+            }
             fetch("http://localhost:3001/Products")
                 .then((response) => response.json())
                 .then((products) => {
                 const newProduct = {
                     id: generateId(products),
-                    name: document.getElementById("item-name")
-                        .value,
-                    description: document.getElementById("description-name").value,
-                    price: parseFloat(document.getElementById("price-tag").value),
-                    category: document.getElementById("category")
-                        .value,
-                    imageURL: document.getElementById("image-url")
-                        .value,
+                    name: itemNameInput.value,
+                    description: descriptionInput.value,
+                    price: parseFloat(priceInput.value),
+                    category: categorySelect.value,
+                    imageURL: imageUrlInput.value,
                 };
-                // POST request to the json-server
                 return fetch("http://localhost:3001/Products", {
                     method: "POST",
                     headers: {
@@ -60,41 +88,60 @@ document.addEventListener("DOMContentLoaded", function () {
                 return response.json();
             })
                 .then((data) => {
-                console.log("Success:", data);
-                // Reset the form and close the modal
+                console.log("Product added successfully:", data);
+                popUp.classList.add("open");
                 addForm.reset();
                 modal.classList.remove("modal-open");
+                setTimeout(() => {
+                    popUp.classList.remove("open");
+                }, 6000);
             })
                 .catch((error) => {
-                console.error("Error:", error);
+                console.error("Error adding product:", error);
             });
         });
     }
     else {
         console.error("Add product button not found");
     }
+    const categoryButtons = document.querySelectorAll(".category-btn");
+    categoryButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const category = button.getAttribute("data-category");
+            console.log(`Category button clicked: ${category}`);
+            if (categoryHeader) {
+                categoryHeader.textContent = category ? category : "All Products";
+            }
+            getItemsByCategory(category || "");
+        });
+    });
+    getItemsByCategory("");
 });
-function generateId(products) {
-    if (products.length === 0) {
-        return "1";
-    }
-    const numericIds = products
-        .map((product) => parseInt(product.id))
-        .filter((id) => !isNaN(id));
-    const maxId = numericIds.length > 0 ? Math.max(...numericIds) : 0;
-    return (maxId + 1).toString();
-}
-document.addEventListener("DOMContentLoaded", () => {
-    fetch("http://localhost:3001/Products")
-        .then((response) => response.json())
+function getItemsByCategory(category) {
+    const url = category
+        ? `http://localhost:3001/Products?category=${category}`
+        : `http://localhost:3001/Products`;
+    console.log(`Fetching items for category: ${category ? category : "all"} with URL: ${url}`);
+    fetch(url)
+        .then((response) => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+    })
         .then((data) => {
+        console.log(`Data fetched for category ${category ? category : "all"}:`, data);
+        const itemsContainer = document.getElementById("items-container");
         if (!data || data.length === 0) {
-            console.error("Invalid data structure received from the server.");
+            console.error("No products found for this category.");
+            if (itemsContainer) {
+                itemsContainer.innerHTML =
+                    "<p>No products found for this category.</p>";
+            }
             return;
         }
-        const itemsContainer = document.getElementById("items-container");
         if (itemsContainer) {
-            // Iterate over each product and create/update item cards
+            itemsContainer.innerHTML = "";
             data.forEach((product) => {
                 const itemCard = createItemCard(product);
                 itemsContainer.appendChild(itemCard);
@@ -105,7 +152,17 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     })
         .catch((error) => console.error("Error fetching products:", error));
-});
+}
+function generateId(products) {
+    if (products.length === 0) {
+        return "1";
+    }
+    const numericIds = products
+        .map((product) => parseInt(product.id))
+        .filter((id) => !isNaN(id));
+    const maxId = numericIds.length > 0 ? Math.max(...numericIds) : 0;
+    return (maxId + 1).toString();
+}
 function createItemCard(product) {
     const itemDiv = document.createElement("div");
     itemDiv.classList.add("item");
@@ -117,16 +174,14 @@ function createItemCard(product) {
     const name = document.createElement("h3");
     name.textContent = product.name;
     const price = document.createElement("p");
-    price.textContent = `Price: ${product.price}`;
+    price.textContent = `Price: $ ${product.price}`;
     const category = document.createElement("p");
     category.textContent = `Category: ${product.category}`;
     const viewButton = document.createElement("button");
     viewButton.textContent = "View Product";
     viewButton.addEventListener("click", () => {
-        // Navigate to the product page
         window.location.href = `/html/product.html?id=${product.id}`;
-        console.log("product.id", product);
-        console.log("View button clicked");
+        console.log("View button clicked for product:", product);
     });
     itemDiv.appendChild(image);
     itemDiv.appendChild(name);

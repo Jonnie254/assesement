@@ -1,23 +1,51 @@
 "use strict";
 
-// Ensure the DOM is fully loaded before running the script
 document.addEventListener("DOMContentLoaded", function () {
-  // Select the elements
   const addBtn = document.getElementById(
     "add-new-product"
   ) as HTMLButtonElement;
   const addForm = document.getElementById("add-form") as HTMLFormElement;
   const modal = document.getElementById("mymodal") as HTMLDivElement;
   const cancelBtn = document.getElementById("cancel-btn") as HTMLButtonElement;
+  const popUp = document.getElementById("pop-up") as HTMLDivElement;
   const addProductBtn = document.getElementById(
     "add-product"
   ) as HTMLButtonElement;
+  const categoryHeader = document.querySelector(
+    ".items-two h2"
+  ) as HTMLHeadingElement;
 
-  // Check if the elements exist and add event listeners
+  const itemNameInput = document.getElementById(
+    "item-name"
+  ) as HTMLInputElement;
+  const descriptionInput = document.getElementById(
+    "description-name"
+  ) as HTMLTextAreaElement;
+  const priceInput = document.getElementById("price-tag") as HTMLInputElement;
+  const categorySelect = document.getElementById(
+    "category"
+  ) as HTMLSelectElement;
+  const imageUrlInput = document.getElementById(
+    "image-url"
+  ) as HTMLInputElement;
+
+  const itemNameError = document.querySelector(
+    "p.error-message:nth-of-type(1)"
+  ) as HTMLParagraphElement;
+  const descriptionError = document.querySelector(
+    "p.error-message:nth-of-type(2)"
+  ) as HTMLParagraphElement;
+  const priceError = document.querySelector(
+    "p.error-message:nth-of-type(3)"
+  ) as HTMLParagraphElement;
+  const imageUrlError = document.querySelector(
+    "p.error-message:nth-of-type(4)"
+  ) as HTMLParagraphElement;
+
   if (addBtn) {
     addBtn.addEventListener("click", () => {
       modal.classList.add("modal-open");
-      console.log("clicked");
+      console.log("Add button clicked");
     });
   } else {
     console.error("Add button not found");
@@ -36,27 +64,48 @@ document.addEventListener("DOMContentLoaded", function () {
     addProductBtn.addEventListener("click", (e) => {
       e.preventDefault();
 
-      // Fetch the existing products to determine the new ID
+      itemNameError.classList.remove("open");
+      descriptionError.classList.remove("open");
+      priceError.classList.remove("open");
+      imageUrlError.classList.remove("open");
+
+      let isValid = true;
+      if (itemNameInput.value.trim() === "") {
+        itemNameError.classList.add("open");
+        isValid = false;
+      }
+      if (descriptionInput.value.trim() === "") {
+        descriptionError.classList.add("open");
+        isValid = false;
+      }
+      if (
+        priceInput.value.trim() === "" ||
+        isNaN(parseFloat(priceInput.value))
+      ) {
+        priceError.classList.add("open");
+        isValid = false;
+      }
+      if (imageUrlInput.value.trim() === "") {
+        imageUrlError.classList.add("open");
+        isValid = false;
+      }
+
+      if (!isValid) {
+        return;
+      }
+
       fetch("http://localhost:3001/Products")
         .then((response) => response.json())
         .then((products) => {
           const newProduct = {
             id: generateId(products),
-            name: (document.getElementById("item-name") as HTMLInputElement)
-              .value,
-            description: (
-              document.getElementById("description-name") as HTMLInputElement
-            ).value,
-            price: parseFloat(
-              (document.getElementById("price-tag") as HTMLInputElement).value
-            ),
-            category: (document.getElementById("category") as HTMLSelectElement)
-              .value,
-            imageURL: (document.getElementById("image-url") as HTMLInputElement)
-              .value,
+            name: itemNameInput.value,
+            description: descriptionInput.value,
+            price: parseFloat(priceInput.value),
+            category: categorySelect.value,
+            imageURL: imageUrlInput.value,
           };
 
-          // POST request to the json-server
           return fetch("http://localhost:3001/Products", {
             method: "POST",
             headers: {
@@ -72,21 +121,84 @@ document.addEventListener("DOMContentLoaded", function () {
           return response.json();
         })
         .then((data) => {
-          console.log("Success:", data);
-          // Reset the form and close the modal
+          console.log("Product added successfully:", data);
+          popUp.classList.add("open");
           addForm.reset();
           modal.classList.remove("modal-open");
+          setTimeout(() => {
+            popUp.classList.remove("open");
+          }, 6000);
         })
         .catch((error) => {
-          console.error("Error:", error);
+          console.error("Error adding product:", error);
         });
     });
   } else {
     console.error("Add product button not found");
   }
+
+  const categoryButtons = document.querySelectorAll(".category-btn");
+  categoryButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const category = button.getAttribute("data-category");
+      console.log(`Category button clicked: ${category}`);
+
+      if (categoryHeader) {
+        categoryHeader.textContent = category ? category : "All Products";
+      }
+
+      getItemsByCategory(category || "");
+    });
+  });
+  getItemsByCategory("");
 });
 
-function generateId(products: any[]) {
+function getItemsByCategory(category: string) {
+  const url = category
+    ? `http://localhost:3001/Products?category=${category}`
+    : `http://localhost:3001/Products`;
+  console.log(
+    `Fetching items for category: ${
+      category ? category : "all"
+    } with URL: ${url}`
+  );
+
+  fetch(url)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log(
+        `Data fetched for category ${category ? category : "all"}:`,
+        data
+      );
+      const itemsContainer = document.getElementById("items-container");
+      if (!data || data.length === 0) {
+        console.error("No products found for this category.");
+        if (itemsContainer) {
+          itemsContainer.innerHTML =
+            "<p>No products found for this category.</p>";
+        }
+        return;
+      }
+
+      if (itemsContainer) {
+        itemsContainer.innerHTML = "";
+        data.forEach((product: any) => {
+          const itemCard = createItemCard(product);
+          itemsContainer.appendChild(itemCard);
+        });
+      } else {
+        console.error("Items container not found");
+      }
+    })
+    .catch((error) => console.error("Error fetching products:", error));
+}
+
+function generateId(products: any[]): string {
   if (products.length === 0) {
     return "1";
   }
@@ -96,29 +208,6 @@ function generateId(products: any[]) {
   const maxId = numericIds.length > 0 ? Math.max(...numericIds) : 0;
   return (maxId + 1).toString();
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  fetch("http://localhost:3001/Products")
-    .then((response) => response.json())
-    .then((data: any[]) => {
-      if (!data || data.length === 0) {
-        console.error("Invalid data structure received from the server.");
-        return;
-      }
-
-      const itemsContainer = document.getElementById("items-container");
-      if (itemsContainer) {
-        // Iterate over each product and create/update item cards
-        data.forEach((product) => {
-          const itemCard = createItemCard(product);
-          itemsContainer.appendChild(itemCard);
-        });
-      } else {
-        console.error("Items container not found");
-      }
-    })
-    .catch((error) => console.error("Error fetching products:", error));
-});
 
 function createItemCard(product: any): HTMLElement {
   const itemDiv = document.createElement("div");
@@ -133,7 +222,7 @@ function createItemCard(product: any): HTMLElement {
   name.textContent = product.name;
 
   const price = document.createElement("p");
-  price.textContent = `Price: ${product.price}`;
+  price.textContent = `Price: $ ${product.price}`;
 
   const category = document.createElement("p");
   category.textContent = `Category: ${product.category}`;
@@ -141,11 +230,8 @@ function createItemCard(product: any): HTMLElement {
   const viewButton = document.createElement("button");
   viewButton.textContent = "View Product";
   viewButton.addEventListener("click", () => {
-    // Navigate to the product page
     window.location.href = `/html/product.html?id=${product.id}`;
-    console.log("product.id", product);
-
-    console.log("View button clicked");
+    console.log("View button clicked for product:", product);
   });
 
   itemDiv.appendChild(image);

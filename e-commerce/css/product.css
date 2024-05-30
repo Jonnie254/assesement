@@ -9,7 +9,7 @@
   align-items: center;
   justify-content: center;
   margin-top: 20px;
-  background-color: #ffffff;
+  background-color: #eaf1f3;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 .contain {
@@ -123,7 +123,31 @@ form .btn,
   margin-top: 20px;
   margin-left: 20px;
 }
+.popButtons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
 .btn:hover,
 form .btn:hover {
   background-color: #ff4500;
+}
+#pop-up {
+  visibility: hidden;
+  opacity: 0;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: visibility 0.3s, opacity 0.3s, transform 0.3s;
+}
+#pop-up.open {
+  visibility: visible;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
 }

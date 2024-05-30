@@ -15,8 +15,7 @@
                 <img src="/assets/logo.jpg" alt="" width="70px" height="70px">
             </div>
             <div class="search">
-                <input type="text" placeholder="Search">
-                <button>Search</button>
+                <p>Welcome, Here you can manage All the products</p>
             </div>
             <div class="user-icon">
                 <img src="/assets/user.png" alt="" width="50px" height="50px">
@@ -28,12 +27,13 @@
                 <div class="category">
                     <h2>Category</h2>
                     <ul>
-                        <li class="active">Electronics</li>
-                        <li>Mobile</li>
-                        <li>Computer</li>
-                        <li>Home Appliances</li>
-                        <li>Books</li>
-                        <li>Others</li>
+                        <li class="active category-btn" id="all-products">Products</li>
+                        <li class="category-btn" id="electronics" data-category="Electronics">Electronics</li>
+                        <li id="mobile" class="category-btn" data-category="Mobile">Mobile</li>
+                        <li id="computer" class="category-btn" data-category="Computers">Computer</li>
+                        <li id="applicants" class="category-btn" data-category="Home Appliances">Home Appliances</li>
+                        <li id="books" class="category-btn" data-category="Books">Books</li>
+                        <li id="others" class="category-btn" data-category="Others">Others</li>
                     </ul>
                 </div>
                 <div class="filter">
@@ -54,10 +54,14 @@
                     <h2>Add Product</h2>
                     <label for="item-name">Item Name</label>
                     <input type="text" placeholder="Item Name" id="item-name">
+                    <p class="error-message">Please Enter item name</p>
                     <label for="description">Description</label>
-                    <input type="text" placeholder="Description" id="description-name">
+                    <textarea type="text" placeholder="Description" id="description-name">
+                    </textarea>
+                    <p class="error-message">Please Enter description-name</p>
                     <label for="price">Price</label>
                     <input type="text" placeholder="Price" id="price-tag">
+                    <p class="error-message">Please Enter Price</p>
                     <label for="category">Category</label>
                     <select name="category" id="category">
                         <option value="Electronics">Electronics</option>
@@ -69,6 +73,7 @@
                     </select>
                     <label for="text">Image URL</label>
                     <input type="text" placeholder="image url" id="image-url">
+                    <p class="error-message">Please Enter image url</p>
                     <div class="button">
                         <button type="submit" class="btn" id="add-product">Add Product</button>
                         <button class="btn" id="cancel-btn">Cancel</button>
