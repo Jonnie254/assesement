@@ -8,7 +8,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-// Function to add products to the cart
 function addToCart(product) {
     let cart = JSON.parse(localStorage.getItem("cart") || "[]");
     const existingItem = cart.find((item) => item.product.id === product.id);
@@ -38,24 +37,33 @@ function fetchProductData(productId) {
 }
 document.addEventListener("DOMContentLoaded", function () {
     const addButton = document.getElementById("add-button");
+    const viewButton = document.getElementById("add-new-product");
+    const table = document.getElementById("cart-table");
+    viewButton === null || viewButton === void 0 ? void 0 : viewButton.addEventListener("click", () => {
+        table === null || table === void 0 ? void 0 : table.classList.add("show");
+    });
     if (addButton) {
         addButton.addEventListener("click", function () {
             return __awaiter(this, void 0, void 0, function* () {
-                // Fetch the product data dynamically from the API
-                const productId = "13"; // Replace with actual product ID
+                const urlParams = new URLSearchParams(window.location.search);
+                const productId = urlParams.get("id");
+                if (!productId) {
+                    console.error("Product ID not found in URL parameters");
+                    return;
+                }
                 const product = yield fetchProductData(productId);
                 if (product) {
-                    // Add the product to the cart
                     addToCart(product);
                     console.log("Product added to cart");
                 }
                 else {
-                    // Handle error or display a message to the user
                     console.error("Failed to fetch product data");
                 }
             });
         });
     }
+    // Render cart items on page load
+    renderCartItems();
 });
 // Function to create an HTML element for each product and has view product button
 // the view product will take me to the individual product page where I can view the product details
@@ -123,6 +131,56 @@ document.querySelectorAll(".category-btn").forEach((button) => {
         displayProducts(products);
     }));
 });
+function renderCartItems() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const cartItems = JSON.parse(localStorage.getItem("cart") || "[]");
+        const cartTableBody = document.getElementById("cart-table-body");
+        if (!cartTableBody)
+            return;
+        cartTableBody.innerHTML = "";
+        cartItems.forEach((cartItem) => {
+            const row = document.createElement("tr");
+            const nameCell = document.createElement("td");
+            nameCell.textContent = cartItem.product.name;
+            const priceCell = document.createElement("td");
+            priceCell.textContent = `$${cartItem.product.price}`;
+            const quantityCell = document.createElement("td");
+            quantityCell.textContent = cartItem.quantity.toString();
+            // Create buttons for actions
+            const actionsCell = document.createElement("td");
+            // Create delete button
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "Delete";
+            deleteButton.classList.add("button-code");
+            deleteButton.addEventListener("click", () => {
+                removeFromCart(cartItem.product.id);
+                renderCartItems();
+            });
+            // Create update button
+            const updateButton = document.createElement("button");
+            updateButton.textContent = "Update";
+            updateButton.classList.add("button-code");
+            updateButton.addEventListener("click", () => {
+                // Implement your update functionality here
+            });
+            actionsCell.appendChild(deleteButton);
+            actionsCell.appendChild(updateButton);
+            // Append cells to row
+            row.appendChild(nameCell);
+            row.appendChild(priceCell);
+            row.appendChild(quantityCell);
+            row.appendChild(actionsCell);
+            // Append row to table body
+            cartTableBody.appendChild(row);
+        });
+    });
+}
+// Function to remove item from cart
+function removeFromCart(productId) {
+    let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    const updatedCart = cart.filter((item) => item.product.id !== productId);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+}
 window.addEventListener("DOMContentLoaded", () => __awaiter(void 0, void 0, void 0, function* () {
     const products = yield fetchProducts("");
     displayProducts(products);
