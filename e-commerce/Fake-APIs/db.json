@@ -3,7 +3,8 @@
     {
       "id": "1",
       "name": "John Doe",
-      "email": "john@gmail.com"
+      "email": "john@gmail.com",
+      "password": "1234"
     }
   ],
   "Products": [
@@ -39,5 +40,6 @@
       "category": "Electronics",
       "imageURL": "https://m.media-amazon.com/images/I/71MGiPTwXAL._AC_UY218_.jpg"
     }
-  ]
+  ],
+  "cart": []
 }

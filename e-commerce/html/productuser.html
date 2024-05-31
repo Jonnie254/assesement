@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/product.css">
+    <title>Product</title>
+</head>
+
+<body>
+    <div class="contain">
+        <div class="container">
+            <div class="image-container">
+                <img id="product-image" src="" alt="">
+            </div>
+            <div class="product-details">
+                <h2 id="product-name"></h2>
+                <p id="product-description"></p>
+                <p id="product-price"></p>
+                <div class="buttons">
+                    <button class="btn" id="add-button">Add to Cart</button>
+                    <button class="btn" id="back-button">Back to Home</button>
+                </div>
+            </div>
+            <div id="pop-up">
+                <img src="/assets/green-check.jpg" class="tick" id="tick-green" width="50px" height="50px">
+                <h2 id="popup-title">Thank you</h2>
+                <p id="popup-message">Are you sure you want to buy the product?</p>
+                <div class="popButtons">
+                    <button class="btn" id="add-popup">Add</button>
+                    <button class="btn" id="cancel-popup">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/dist/products.js"></script>
+    <script src="/dist/users.js"></script>
+    <script src="/dist/productAdd.js"></script>
+</body>
+
+</html>
