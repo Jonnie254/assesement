@@ -148,6 +148,12 @@ function renderCartItems() {
             quantityCell.textContent = cartItem.quantity.toString();
             // Create buttons for actions
             const actionsCell = document.createElement("td");
+            const closeOutline = document.getElementById("close-outline");
+            const overlay = document.getElementById("overlay");
+            closeOutline === null || closeOutline === void 0 ? void 0 : closeOutline.addEventListener("click", () => {
+                const table = document.getElementById("cart-table");
+                table === null || table === void 0 ? void 0 : table.classList.remove("show");
+            });
             // Create delete button
             const deleteButton = document.createElement("button");
             deleteButton.textContent = "Delete";
@@ -158,7 +164,7 @@ function renderCartItems() {
             });
             // Create update button
             const updateButton = document.createElement("button");
-            updateButton.textContent = "Update";
+            updateButton.textContent = "Check Out";
             updateButton.classList.add("button-code");
             updateButton.addEventListener("click", () => {
                 // Implement your update functionality here

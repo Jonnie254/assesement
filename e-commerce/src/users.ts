@@ -42,9 +42,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const addButton = document.getElementById("add-button");
   const viewButton = document.getElementById("add-new-product");
   const table = document.getElementById("cart-table");
+  const overlay = document.getElementById("overlay");
 
   viewButton?.addEventListener("click", () => {
     table?.classList.add("show");
+    overlay?.classList.add("overlay");
   });
   if (addButton) {
     addButton.addEventListener("click", async function () {
@@ -162,6 +164,12 @@ async function renderCartItems() {
 
     // Create buttons for actions
     const actionsCell = document.createElement("td");
+    const closeOutline = document.getElementById("close-outline");
+
+    closeOutline?.addEventListener("click", () => {
+      const table = document.getElementById("cart-table");
+      table?.classList.remove("show");
+    });
 
     // Create delete button
     const deleteButton = document.createElement("button");
@@ -174,7 +182,7 @@ async function renderCartItems() {
 
     // Create update button
     const updateButton = document.createElement("button");
-    updateButton.textContent = "Update";
+    updateButton.textContent = "Check Out";
     updateButton.classList.add("button-code");
     updateButton.addEventListener("click", () => {
       // Implement your update functionality here
