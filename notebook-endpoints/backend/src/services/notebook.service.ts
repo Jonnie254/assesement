@@ -37,5 +37,17 @@ export class notebookService {
       notebooks: response,
     };
   }
-  async fetchOneOrganization(notes_id: string) {}
+  async fetchOneNote(notes_id: string) {
+    let response = (
+      await Connection.query(`SELECT * FROM notes WHERE id = '${notes_id}'`)
+    ).recordset;
+
+    if (response.length < 1) {
+      return "No notes found";
+    } else {
+      return {
+        notebook: response[0],
+      };
+    }
+  }
 }

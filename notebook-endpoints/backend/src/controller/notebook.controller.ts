@@ -21,4 +21,13 @@ const getALLNoteBooks = async (req: Request, res: Response) => {
     return res.json({ error: error.message });
   }
 };
-export { addNoteBook, getALLNoteBooks };
+const getOneNote = async (req: Request, res: Response) => {
+  try {
+    let { notes_id } = req.params;
+    let notebook = await notService.fetchOneNote(notes_id);
+    return res.json(notebook);
+  } catch (error: any) {
+    return res.json({ error: error.message });
+  }
+};
+export { addNoteBook, getALLNoteBooks, getOneNote };
