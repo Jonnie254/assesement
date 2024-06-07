@@ -1,4 +1,4 @@
-###
+### add a note to a notebook
 POST http://localhost:3002/notService/addNotebook
 Content-Type: application/json
 
@@ -7,11 +7,11 @@ Content-Type: application/json
    "content": "This is a notebook"
 }
 
-###
+### add to fetch all notes
 GET http://localhost:3002/notService/getNotebooks
 Content-Type: application/json
 
-###
+### get only one notebook
 
 GET http://localhost:3002/notService/getNotebook/D9A3AB1F-F8AC-4498-88E5-FEB313F2C06E
 Content-Type: application/json
