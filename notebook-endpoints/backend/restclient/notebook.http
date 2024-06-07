@@ -1,0 +1,8 @@
+###
+POST http://localhost:3002/notService/addNotebook
+Content-Type: application/json
+
+{
+   "title": "Notebook 1",
+   "content": "This is a notebook"
+}
