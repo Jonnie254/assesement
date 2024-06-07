@@ -37,4 +37,5 @@ export class notebookService {
       notebooks: response,
     };
   }
+  async fetchOneOrganization(notes_id: string) {}
 }
