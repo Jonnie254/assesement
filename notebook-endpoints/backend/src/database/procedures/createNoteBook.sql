@@ -6,6 +6,6 @@ CREATE OR ALTER PROCEDURE createNotebook(
 )
 AS
 BEGIN
-   insert into Notebooks (id, title, content, createdAt) values 
+   insert into Notes (id, title, content, createdAt) values 
     (@id, @title, @content, @CreatedAt);
 END

@@ -12,4 +12,13 @@ let addNoteBook = async (req: Request, res: Response) => {
     return res.json({ error: error.message });
   }
 };
-export { addNoteBook };
+
+const getALLNoteBooks = async (req: Request, res: Response) => {
+  try {
+    let notebooks = await notService.getNotebooks();
+    return res.json({ notebooks });
+  } catch (error: any) {
+    return res.json({ error: error.message });
+  }
+};
+export { addNoteBook, getALLNoteBooks };

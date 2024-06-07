@@ -12,7 +12,7 @@ export class notebookService {
           id: v4(),
           title: note.title,
           content: note.content,
-          createdAt: new Date().toString(),
+          createdAt: new Date().toISOString(),
         })
       ).rowsAffected;
       console.log("Result:", result);
@@ -30,5 +30,11 @@ export class notebookService {
       console.error("Error creating notebook:", error);
       throw new Error("Failed to create notebook");
     }
+  }
+  async getNotebooks() {
+    let response = (await Connection.query("SELECT * FROM notes")).recordset;
+    return {
+      notebooks: response,
+    };
   }
 }
