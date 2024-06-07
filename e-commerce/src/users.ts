@@ -42,11 +42,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const addButton = document.getElementById("add-button");
   const viewButton = document.getElementById("add-new-product");
   const table = document.getElementById("cart-table");
-  const overlay = document.getElementById("overlay");
+  const overlay = document.getElementById("overlay-page");
 
   viewButton?.addEventListener("click", () => {
     table?.classList.add("show");
-    overlay?.classList.add("overlay");
+    overlay?.classList.add("open");
   });
   if (addButton) {
     addButton.addEventListener("click", async function () {

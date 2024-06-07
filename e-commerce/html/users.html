@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="boxicons/css/boxicons.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="/css/index.css">
     <title>Document</title>
 </head>
@@ -19,10 +19,11 @@
                 <p>Welcome, Here you can Buy All the products</p>
             </div>
             <div class="cart-icon">
-                <i class='bx bx-cart-download'></i>
+                <i class='bx bx-cart-download' style="color: blue;"></i>
+                <p>0</p>
             </div>
             <div class="user-icon">
-                <img src="/assets/user.png" alt="" width="50px" height="50px">
+                <img src="/assets/user.png" alt="" width="50px">
                 <p>User@gmail.com</p>
             </div>
         </div>
@@ -36,8 +37,7 @@
                         <li id="mobile" class="category-btn" data-category="Mobile">Mobile</li>
                         <li id="computer" class="category-btn" data-category="Computers">Computer</li>
                         <li id="applicants" class="category-btn" data-category="Home Appliances">Home Appliances</li>
-                        <li id="books" class="category-btn" data-category="Books">Books</li>
-                        <li id="others" class="category-btn" data-category="Others">Others</li>
+                        <li id="books" class="category-btn" data-category="BoygygyOthers">Others</li>
                     </ul>
                 </div>
                 <div class="filter">
@@ -59,7 +59,7 @@
                 </div>
             </div>
             <!-- Cart table -->
-            <div class="overlay" id="overlay"></div>
+            <div class="overlay" id="overlay-page"></div>
             <div class="cart-container" id="cart-table">
                 <ion-icon id="close-outline" name="close-circle-outline"></ion-icon>
                 <h2>Cart Items</h2>

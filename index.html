@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(to right, #3a7bd5, #3a6073);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .center .mybtn {
+            background: #3a7bd5;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="center">
+        <button id="myBtn" class="mybtn">log in</button>
+    </div>
+    <div class="popup">
+        <div class="close-btn">&times;</div>
+        <div class="form">
+            <h2>Add Habit</h2>
+            <div class="form-element">
+                <label for="email" id="email">Email</label>
+                <input type="text" id="email" placeholder="enter email">
+            </div>
+            <div class="form-element">
+                <label for="password" id="password">Password</label>
+                <input type="password" id="password" placeholder="enter password">
+            </div>
+
+</body>
+
+</html>

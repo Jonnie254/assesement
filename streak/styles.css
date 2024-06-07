@@ -1,0 +1,54 @@
+/* styles.css */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9; /* Light background for better contrast */
+}
+
+.streak-container {
+  text-align: center;
+}
+
+.streak-circle {
+  width: 100px;
+  height: 100px;
+  border: 5px solid orange;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  position: relative;
+  background-color: white; /* White background to match the example */
+}
+
+.streak-circle i {
+  font-size: 1.5em;
+  color: #bb6c12; /* Orange color for the flame icon */
+  position: absolute;
+  top: -20px; /* Positioning the flame icon above the circle */
+}
+
+#streak-count {
+  font-size: 2em;
+  color: black;
+  margin-top: 10px; /* Adjust spacing to position number nicely */
+}
+
+.streak-label {
+  margin-top: 15px;
+  font-size: 1em;
+  color: orange;
+  font-weight: bold; /* Make the label text bold */
+}
+
+.streak-date {
+  margin-top: 5px;
+  font-size: 0.9em;
+  color: gray;
+}
