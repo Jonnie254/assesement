@@ -23,14 +23,13 @@ export class NoteCreateComponent {
   constructor(private noteService: NoteService) {
     this.noteService = noteService;
   }
-
+  //method to create note
   createNote(): void {
     console.log('Creating note:', this.newNote);
     if (
       this.newNote.title.trim() === '' ||
       this.newNote.content.trim() === ''
     ) {
-      alert('Please enter both title and content.');
       return;
     }
 
@@ -42,8 +41,6 @@ export class NoteCreateComponent {
       title: '',
       content: '',
     };
-
-    alert('Note created successfully!');
   }
   toggleHideForm(): void {
     this.showCreateForm = !this.showCreateForm;
