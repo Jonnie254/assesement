@@ -38,16 +38,16 @@ export class notebookService {
     };
   }
   async fetchOneNote(notes_id: string) {
-    let response = (
-      await Connection.query(`SELECT * FROM notes WHERE id = '${notes_id}'`)
-    ).recordset;
-
-    if (response.length < 1) {
-      return "No notes found";
-    } else {
+    try {
+      let response = await Connection.query(
+        `EXEC GetNotebookById @NoteId = '${notes_id}'`
+      );
       return {
-        notebook: response[0],
+        notebook: response.recordset[0],
       };
+    } catch (error) {
+      console.error("Error fetching notebook:", error);
+      throw new Error("Failed to fetch notebook");
     }
   }
 }

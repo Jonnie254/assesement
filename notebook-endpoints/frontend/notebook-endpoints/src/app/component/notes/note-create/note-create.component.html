@@ -1,0 +1,16 @@
+<div class="note-create">
+    <div class="close-create-form" (click)="toggleHideForm()">X</div>
+    <h2>Create New Note</h2>
+    <form (ngSubmit)="createNote()" #noteForm="ngForm">
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" [(ngModel)]="newNote.title" required class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="content">Content:</label>
+            <textarea id="content" name="content" [(ngModel)]="newNote.content" required
+                class="form-control"></textarea>
+        </div>
+        <button type="submit" [disabled]="noteForm.invalid" class="btn btn-primary">Create Note</button>
+    </form>
+</div>

@@ -1,0 +1,12 @@
+CREATE PROCEDURE GetNotebookById
+    @NoteId NVARCHAR(36)
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    
+    -- Convert the UUID string to a uniqueidentifier
+
+    -- Select the notebook using the converted uniqueidentifier
+    SELECT * FROM notes WHERE id = @NoteId;
+END;
