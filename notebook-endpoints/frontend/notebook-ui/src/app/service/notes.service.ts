@@ -15,9 +15,9 @@ export class NotesService {
     );
   }
   //get all notes
-  getAllNotes(): Observable<{ notebook: Notebook[] }> {
-    return this.http.get<{ notebook: Notebook[] }>(
-      'http://localhost:4201/getNoteBooks'
+  getAllNotes(): Observable<Notebook[]> {
+    return this.http.get<Notebook[]>(
+      'http://localhost:4201/notservice/getNoteBooks'
     );
   }
 }

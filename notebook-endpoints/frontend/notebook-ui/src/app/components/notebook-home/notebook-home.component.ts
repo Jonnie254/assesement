@@ -24,7 +24,9 @@ export class NotebookHomeComponent {
   getNotes() {
     this.notesService.getAllNotes().subscribe(
       (data) => {
-        this.notes = data.notebook;
+        console.log(data);
+
+        this.notes = data;
       },
       (error) => {
         console.error('Error fetching notebooks:', error);

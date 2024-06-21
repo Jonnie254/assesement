@@ -16,7 +16,7 @@ let addNoteBook = async (req: Request, res: Response) => {
 const getALLNoteBooks = async (req: Request, res: Response) => {
   try {
     let notebooks = await notService.getNotebooks();
-    return res.json({ notebooks });
+    return res.json(notebooks);
   } catch (error: any) {
     return res.json({ error: error.message });
   }

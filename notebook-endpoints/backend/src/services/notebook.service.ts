@@ -31,11 +31,10 @@ export class notebookService {
       throw new Error("Failed to create notebook");
     }
   }
-  async getNotebooks() {
+  async getNotebooks(): Promise<notebook[]> {
     let response = (await Connection.query("SELECT * FROM notes")).recordset;
-    return {
-      notebooks: response,
-    };
+
+    return response;
   }
   async fetchOneNote(notes_id: string) {
     try {
