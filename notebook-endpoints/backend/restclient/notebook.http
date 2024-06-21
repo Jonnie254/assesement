@@ -1,5 +1,5 @@
 ### add a note to a notebook
-POST http://localhost:3002/notService/addNotebook
+POST http://localhost:4201/notService/addNotebook
 Content-Type: application/json
 
 {
@@ -8,10 +8,10 @@ Content-Type: application/json
 }
 
 ### add to fetch all notes
-GET http://localhost:3002/notService/getNotebooks
+GET http://localhost:4201/notService/getNotebooks
 Content-Type: application/json
 
 ### get only one notebook
-GET http://localhost:3002/notService/getNotebook/dccf23f9-1b84-49f9-b40b-0a9c80213b4f
+GET http://localhost:4201/notService/getNotebook/dccf23f9-1b84-49f9-b40b-0a9c80213b4f
 Content-Type: application/json
 

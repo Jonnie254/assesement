@@ -1,0 +1,29 @@
+<app-header></app-header>
+<main>
+    <div class="wrapper" *ngIf="notes.length > 0">
+        <div class="card" *ngFor="let note of notes">
+            <div class="confirmDelete" *ngIf="showConfirmDelete && deleteNoteId === note.id"
+                style="display: flex;justify-content: space-between;padding: 5px; color: #7579f9;">
+                <p>confirm delete?</p>
+                <div class="actions">
+                    <button (click)="deleteNote(note.id)"
+                        style="background-color: transparent; border: none; color: rgb(5, 139, 249);">Yes</button>
+                    <button (click)="cancelDelete()">No</button>
+                </div>
+            </div>
+            <div class="card-head">
+                <h4 style="color: rgb(114, 248, 214);">{{ note.title }}</h4>
+                <div class="actions">
+                    <!-- <i class="fa fa-trash-o" aria-hidden="true" style="color: rgb(253, 105, 105); cursor: pointer;"
+                        (click)="confirmDelete(note.id)"></i>
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"
+                        style="color: rgb(242, 194, 107); cursor: pointer;"></i> -->
+                </div>
+            </div>
+
+            <div class="text-content">
+                <p>{{ note.content }}</p>
+            </div>
+        </div>
+    </div>
+</main>

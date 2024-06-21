@@ -1,0 +1,28 @@
+<app-header></app-header>
+
+<div class="container">
+    <div class="note-form">
+        <div *ngIf="success" class="successMsg">Note created successfully!</div>
+        <form #notebookForm="ngForm" (ngSubmit)="onSubmit(notebookForm)">
+            <div *ngIf="error" class="errorMsg">Error occurred while creating the note.</div>
+
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" ngModel #title="ngModel" required minlength="3"
+                    maxlength="100">
+                <div class="error" *ngIf="title.invalid && (title.dirty || title.touched)">
+                    Title must be between 3 and 100 characters.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="content">Content:</label>
+                <textarea id="content" name="content" ngModel #content="ngModel" rows="6" required minlength="10"
+                    maxlength="1000"></textarea>
+                <div class="error" *ngIf="content.invalid && (content.dirty || content.touched)">
+                    Content must be between 10 and 1000 characters.
+                </div>
+            </div>
+            <button type="submit" class="create-button" [disabled]="notebookForm.invalid">Create</button>
+        </form>
+    </div>
+</div>

@@ -14,9 +14,11 @@
   "description": "",
   "dependencies": {
     "@types/bcryptjs": "^2.4.6",
+    "@types/cors": "^2.8.17",
     "@types/dotenv": "^8.2.0",
     "@types/mssql": "^9.1.5",
     "concurrently": "^8.2.2",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "mssql": "^10.0.2",
