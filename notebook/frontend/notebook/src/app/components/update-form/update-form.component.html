@@ -1,0 +1,43 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div *ngIf="createFormSuccess" class="success-message">
+        <i class="pi pi-check"></i>
+        <p>{{ createFormMessage }}</p>
+    </div>
+    <div *ngIf="!createFormSuccess && createFormError" class="error-message-top">
+        <i class="pi pi-times"></i>
+        <p>{{ createFormMessage }}</p>
+    </div>
+    <div class="note-form">
+        <form #notebookForm="ngForm" (ngSubmit)="onSubmit(notebookForm)">
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" [(ngModel)]="notebook.title" required minlength="3"
+                    maxlength="100">
+                <div class="error"
+                    *ngIf="notebookForm.controls['title'].invalid && (notebookForm.controls['title'].dirty || notebookForm.controls['title'].touched)">
+                    Title must be between 3 and 100 characters.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" [(ngModel)]="notebook.description" rows="6" required
+                    minlength="10" maxlength="1000"></textarea>
+                <div class="error"
+                    *ngIf="notebookForm.controls['description'].invalid && (notebookForm.controls['description'].dirty || notebookForm.controls['description'].touched)">
+                    Description must be between 10 and 1000 characters.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="author">Author:</label>
+                <input type="text" id="author" name="author" [(ngModel)]="notebook.author" required minlength="3"
+                    maxlength="100">
+                <div class="error"
+                    *ngIf="notebookForm.controls['author'].invalid && (notebookForm.controls['author'].dirty || notebookForm.controls['author'].touched)">
+                    Author must be between 3 and 100 characters.
+                </div>
+            </div>
+            <button type="submit" class="create-button" [disabled]="notebookForm.invalid">Update</button>
+        </form>
+    </div>
+</div>

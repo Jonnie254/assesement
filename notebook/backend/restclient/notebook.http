@@ -1,0 +1,29 @@
+### adding a new notebook
+POST http://localhost:3004/notebook/create
+Content-Type: application/json
+
+{
+    "name": "new notebook",
+    "title": "new notebook title",
+    "description": "new notebook description",
+    "author":"John Doe"
+}
+
+### getting a notebook by id
+GET http://localhost:3004/notebook/getone/299f99fe-f841-4648-af7c-7d957d085300
+### getting all notebooks
+GET http://localhost:3004/notebook/getall
+
+### updating a notebook
+PUT http://localhost:3004/notebook/update/299f99fe-f841-4648-af7c-7d957d085300
+Content-Type: application/json
+
+{
+    "name": "updated notebook",
+    "title": "updated notebook title2",
+    "description": "updated notebook description",
+    "author":"John Doe"
+}
+
+### deleting a notebook
+DELETE http://localhost:3004/notebook/delete/299f99fe-f841-4648-af7c-7d957d085300

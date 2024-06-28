@@ -1,0 +1,29 @@
+header {
+  height: 20vh;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+  color: #fff;
+}
+h1 {
+  color: #a3e1e3;
+}
+button {
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: rgb(4, 161, 122);
+  color: #fff;
+}
+button:hover {
+  background-color: rgb(5, 232, 175);
+}
+i {
+  font-size: 20px;
+  color: #fff;
+}
