@@ -120,7 +120,7 @@ describe('NotebookService', () => {
     });
   });
 
-  it('should delete a notebook', () => {
+    it('should delete a notebook', () => {
     const notebookId = '299f99fe-f841-4648-af7c-7d957d085300';
 
     service.deleteNotebook(notebookId).subscribe((res: Res) => {
